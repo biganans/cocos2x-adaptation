@@ -1,11 +1,12 @@
-# cocos2x-adaptation
+cocos2x-adaptation
+===========================
 cocos2dx 适配 横版 iphoneX适配
 
 # iphoneX适配
 ![image](https://github.com/biganans/cocos2x-adaptation/blob/master/res/shipeiX.png)
 使用的是cocos2dx 3.13版本以上，其他版本可以依照找个流程修改。
 1.修改RootViewController.mm 增加ios11的新回调方法 
-
+```
 - (void)viewSafeAreaInsetsDidChange {
     
     [super viewSafeAreaInsetsDidChange];
@@ -19,8 +20,7 @@ bool changeViewFrame = false;
         if (self.view and !changeViewFrame)
         {
             CGRect s = CGRectMake(self.view.safeAreaInsets.left,0,self.view.frame.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right,
-                                  self.view.frame.size.height - self.view.safeAreaInsets.bottom);
-            
+            self.view.frame.size.height - self.view.safeAreaInsets.bottom);
             //x,y,width,height
             self.view.frame = s;
             // 只需要记录一次，因为每次change view frame 都会改变一次这个
@@ -30,9 +30,9 @@ bool changeViewFrame = false;
         
     }   
 }
-
+```
 2.修改AppController.mm 增加全屏背景默认纯色背景（或者图）
-
+```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //省略其他地方初始化
@@ -69,4 +69,4 @@ bool changeViewFrame = false;
     //run the cocos2d-x game scene
     
 }
-
+```

@@ -5,6 +5,7 @@ cocos2dx 适配 横版 iphoneX适配
 ![image](https://github.com/biganans/cocos2x-adaptation/blob/master/res/shipeiX.png)
 使用的是cocos2dx 3.13版本以上，其他版本可以依照找个流程修改。
 1.修改RootViewController.mm 增加ios11的新回调方法 
+
 - (void)viewSafeAreaInsetsDidChange {
     
     [super viewSafeAreaInsetsDidChange];
@@ -31,6 +32,7 @@ bool changeViewFrame = false;
 }
 
 2.修改AppController.mm 增加全屏背景默认纯色背景（或者图）
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //省略其他地方初始化
@@ -65,5 +67,6 @@ bool changeViewFrame = false;
     cocos2d::Director::getInstance()->setOpenGLView(glview);
     
     //run the cocos2d-x game scene
+    
 }
 

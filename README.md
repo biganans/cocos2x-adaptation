@@ -2,6 +2,7 @@
 cocos2dx 适配 横版 iphoneX适配
 
 # iphoneX适配
+![image](https://github.com/biganans/cocos2x-adaptation/blob/master/res/shipeiX.png)
 使用的是cocos2dx 3.13版本以上，其他版本可以依照找个流程修改。
 1.修改RootViewController.mm 增加ios11的新回调方法 
 - (void)viewSafeAreaInsetsDidChange {

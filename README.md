@@ -71,3 +71,32 @@ bool changeViewFrame = false;
     
 }
 ```
+
+# 突发奇想（可行的其它方法）     
+1.如果不想修改代码实现全面屏的方法：我们可以去ios和android里获得SafeArea的大小，那么，     
+NO1:直接修改setPosition里面增加一个参数如    
+```
+//c++ 伪代码
+void setPosition(x,y,ignore)
+{
+    if (!ignore)
+    {
+        //对x，y进行SafeArea对比，然后变化x，y坐标来适配功能区和齐刘海外的区域
+    }
+}
+```    
+NO2:抛出SafeArea方法，在lua进行兼容      
+```
+local SafeArea = function()
+    ...
+end
+local sa = SafeArea or {0,0,cc.Director:getInstance():getWidth().width,cc.Director:getInstance():getWidth().height}
+```    
+NO3:自主创建一个Size的class，所有的坐标操作都从Size里面获取，这样就可以包装一个转换坐标的方法，这种一般都是手工界面的苦命儿吧    
+```
+function Size:checkSafe(x,y)
+    --进行第一个方法里的坐标转换
+    return cc.p(newX,newY)
+end
+```       
+当然还有其它的骚操作就看你自己项目的构建了，因为很多用了lua的项目都不优先考虑整包替换方案，所以苦命活儿还是要做滴，特别是用builder或者stdio的工具更是苦逼哦，但是可以在下一个项目弄好，也就是一个全局的size以及一个SafeArea的坐标变换，甚至可以再包装一个size为safeSize，当然这样做就可能导致safeSize里没有组件，但是事实在非刘海区域其实还是可以绘制一些显示信息，仁者见仁吧，但愿这么点信息对大家有用。
